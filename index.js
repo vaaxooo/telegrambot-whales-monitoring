@@ -56,6 +56,6 @@ const checkTokens = async () => {
     console.log('Done!')
 }
 
-checkTokens()
+//checkTokens()
 
-// cron.schedule('*/5 * * * *', checkTokens)
+cron.schedule('*/5 * * * *', checkTokens)
