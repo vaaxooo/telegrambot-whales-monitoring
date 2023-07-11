@@ -25,8 +25,8 @@ const checkTokens = async () => {
             let tokensList = tokens.filter(token => token.to === wallet)
             for (let token of tokensList) {
                 await sleep(4)
-                let timeDifference = +currentDate - +token.timeStamp;
-                let timeDifferenceMinutes = timeDifference / (1000 * 60);
+                let timeDifference = currentDate - +token.timeStamp;
+                let timeDifferenceMinutes = timeDifference / 60;                
 
 
                 if(timeDifferenceMinutes < 5) {
@@ -36,6 +36,7 @@ const checkTokens = async () => {
                     message += `▪️ *Транзакция:* [${token.hash}](https://etherscan.io/tx/${token.hash})\n\n`
                     message += `▪️ *Токен:* ${tokenName} (${tokenSymbol})\n`
                     message += `▪️ *Количество:* ${value} ${tokenSymbol}\n`
+                    
                     if(message) {
                         Telegram.sendMessage(process.env.TELEGRAM_GROUP_ID, message, { parse_mode: 'Markdown' })
                     }
